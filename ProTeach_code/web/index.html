@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <link href="style.css" rel="stylesheet"> 
+        <title>Login</title>
+    </head>
+    <body>
+        <nav id="nav01"><ul id="menu"><li><a href="#">Login</a></li><li><a href="info.html">info</a></li></ul></nav>
+        <div id="main">
+            <h1>ProTeach</h1>
+
+            <form  name="login"  action="StudentServlet" method= "post" >
+                <input name="email" placeholder="your email" type="email" maxlength="45"><br>
+                <input name="password" placeholder="password" type="password" maxlength="45"><br>
+                <input type="hidden" name="type" value="0">
+
+                <input   value="Login"   type= "submit" >
+                <input type="button" value="Register" onclick="goToRegister()">
+            </form>
+
+
+        </div>
+
+        <!--<script src="script.js"></script>-->
+        <script>
+            var ck_email = new RegExp(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i)
+            function ValidateUser(form) {
+
+                var email = form.email.value;
+                var password = form.password.value;
+                var errors = [];
+
+                if (!ck_email.test(email)) {
+                    alert("You must enter a valid email  address.");
+                }
+                if (password.length == '') {
+                    alert("You must  enter a password");
+                }
+
+            }
+
+        </script>
+
+        <script>
+            function goToRegister() {
+                window.location.href = "register.html";
+            }
+        </script>
+
+
+    </body>
+</html>

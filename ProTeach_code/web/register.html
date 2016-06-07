@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link href="style.css" rel="stylesheet">
+        <title>Login</title>
+    </head>
+    <body>
+        <nav id="nav01"><ul id="menu"><li><a href="index.html">Login</a></li><li><a href="info.html">info</a></li></ul></nav>
+        <div id="main">
+            <h1>ProTeach</h1>
+            <h2>Register-student</h2>
+            <form name="register"  id="myForm" action="StudentServlet" method= "post">
+                Email <input type="email" name="email" placeholder="your email" maxlength="45"><br>
+                Name <input type="text" name="name" placeholder="Name" maxlength="45"><br>
+                Surname<input type="text" name="surname" placeholder="surname" maxlength="45"><br>
+                Password<input type="password" name="password" placeholder="password" maxlength="45"><br>
+                Confirm password<input type="password" name="confirmPass" placeholder="password"><br>
+                Address<input type="text" name="address"><br>
+                Years at university<input type="text" name="year" maxlength="45"><br>
+                Number of careers       <input type="text" name="careers" maxlength="45"><br>
+
+                <input type="hidden" name="type" value="1">
+                <input  type="button"   value="Register"   onclick="ValidateUser(this.form)">
+            </form>
+        </div>
+        <script>
+            var ck_password = new RegExp(/^[A-Za-z0-9-]/);
+            var num = new RegExp(/^[0-9]+$/);
+
+            var ck_name = new RegExp(/^[A-Za-z0-9-]/);
+            var ck_email = new RegExp(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i)
+            function ValidateUser(form) {
+
+                var email = form.email.value;
+                var password = form.password.value;
+                var name = form.name.value;
+                var password = form.password.value;
+                var surname = form.surname.value;
+                var confirmPass = form.confirmPass.value;
+                var year = form.year.value;
+                var career = form.careers.value;
+                if (email == "")
+                {
+                    alert("email name must be filled out");
+
+                } else if (!ck_email.test(email)) {
+                    alert("You must enter a valid email  address.");
+                }
+
+                if (validateName(name) && validateName(surname) && validatePass(password) && validatePass(confirmPass) && valnum(year) && valnum(career) && checkpass(password, confirmPass))
+                    document.getElementById("myForm").submit();
+
+            }
+            function checkpass(pass1, pass2)
+            {
+                if (pass1!=pass2)
+                {
+                    alert("Password different");
+                    return false;
+                }
+                return true;
+            }
+            function valnum(field) {
+                if (field.length == '') {
+                    alert("Empy field");
+                    return false;
+                } else if (!num.test(field)) {
+                    alert("You must enter only number");
+                    return false;
+
+                }
+                return true;
+            }
+            function validatePass(pass) {
+
+                if (pass.length == '') {
+                    alert("You must enter a password");
+                    return false;
+
+                } else if (!ck_password.test(pass)) {
+                    alert("You must enter a valid password");
+                    return false;
+                    
+                }
+                return true;
+            }
+
+            function validateName(name) {
+
+                if (name == "")
+                {
+                    alert("Surname and Name must be filled out");
+                    return false;
+
+                } else if (!ck_name.test(name)) {
+
+                    alert("You must enter a valid  name");
+                    return false;
+
+                }
+                return true;
+
+            }
+
+        </script>
+        <!--<script src="script.js"></script> -->
+    </body>
+</html> 
